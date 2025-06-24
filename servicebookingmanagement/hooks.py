@@ -242,3 +242,13 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {
+        "doctype": "Print Format",
+        "filters": [
+            ["module", "=", "Servicebookingmanagement"]  # Replace with your actual module name
+        ]
+    },
+    "Email Template",
+    "Workflow"
+]

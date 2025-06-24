@@ -1,0 +1,12 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Email Template",
+  "modified": "2025-06-24 10:47:25.182313",
+  "name": "Service Booking",
+  "response": null,
+  "response_html": "{%- set customer = frappe.get_doc(\"Customer\", doc.customer_name) -%}\n\n<p>Dear {{ customer.customer_name }},</p>\n\n<p>We hope this message finds you well.</p>\n\n<p>This is to inform you that the status of your service booking has been <strong>updated</strong>.</p>\n\n<h3 style=\"color: #1a73e8;\">📄 Booking Summary:</h3>\n<ul>\n    <li><strong>Booking ID:</strong> {{ doc.name }}</li>\n    <li><strong>Service Type:</strong> {{ doc.service_type }}</li>\n    <li><strong>Scheduled Date & Time:</strong> {{ doc.preferred_datetime}}</li>\n    <li><strong>Current Status:</strong> <span style=\"color: #d32f2f;\">{{ doc.status }}</span></li>\n</ul>\n\n{% if doc.status.lower() == \"confirmed\" %}\n<p>✅ Your booking has been <strong>confirmed</strong>. Please ensure you are available at the scheduled time.</p>\n{% elif doc.status.lower() == \"cancelled\" %}\n<p>⚠️ We're sorry to inform you that your booking has been <strong>cancelled</strong>. Please contact us if you'd like to reschedule.</p>\n{% elif doc.status.lower() == \"pending\" %}\n<p>⏳ Your booking is currently in <strong>pending</strong> status. We will notify you as soon as it is confirmed.</p>\n{% else %}\n<p>Your booking status is currently set to <strong>{{ doc.status }}</strong>.</p>\n{% endif %}\n\n<p>If you have any questions or need to make changes, feel free to contact our support team.</p>\n\n<p>Warm regards,</p>\n<p><strong>Customer Service Team</strong><br>\n{{ frappe.db.get_single_value(\"Company\", \"company_name\") }}</p>\n",
+  "subject": "Service Bokking",
+  "use_html": 1
+ }
+]
